@@ -75,14 +75,14 @@ Args::Args(int argc, char** argv):
 void Args::usage(){
     cerr << "\nProgram Usage: \n" 
          << program  <<"\n"
-         <<" [ -i molecule.dat ]   input molecule atom&interaction file, defaut: molecule.dat\n"
-         <<" [ -g 0.5 ]            gamma of the solution, defaut: 0.5\n"
-         <<" [ -T 1.0 ]            kT of the environment of simulation, defaut: 1.0\n"
-         <<" [ -t 0.005 ]          time interval of per step, defaut: 0.005\n"
-         <<" [ -N 10000 ]          total number of step of simulation, defaut: 10000\n"
-         <<" [ -n 100 ]            output per step, defaut: 100\n"
-         <<" [ -c 3.0 ]            output cut off, defaut: 3.0\n"
-         <<" [ -o trajectory.dat ] output atoms phase file, defaut: trajectory.dat\n"
+         <<" [ -i molecule.dat ]   input molecule atom&interaction file, default: molecule.dat\n"
+         <<" [ -g 0.5 ]            gamma of the solution, default: 0.5\n"
+         <<" [ -T 1.0 ]            kT of the environment of simulation, default: 1.0\n"
+         <<" [ -t 0.005 ]          time interval of per step, default: 0.005\n"
+         <<" [ -N 10000 ]          total number of step of simulation, default: 10000\n"
+         <<" [ -n 100 ]            output per step, default: 100\n"
+         <<" [ -c 3.0 ]            output cut off, default: 3.0\n"
+         <<" [ -o trajectory.dat ] output atoms phase file, default: trajectory.dat\n"
          <<" [ -h ]                disply this information\n"
          << endl;
     exit(1);
@@ -99,7 +99,7 @@ void readStruct(const string& file, vector<Atom*>& atoms, vector<Interaction*>& 
     }
 
     for(string line; getline(INF, line); ){
-	// check empty line
+        // check empty line
         if(trim(line).empty())
             continue;
 	
@@ -108,15 +108,14 @@ void readStruct(const string& file, vector<Atom*>& atoms, vector<Interaction*>& 
         int nword = separateWord(words, line);
 
         if(words[0] == "ATOM"){
-	    Atom *pA = new Atom(words);
-	    if(pA !=NULL )
-		atoms.emplace_back(pA);
+            Atom *pA = new Atom(words);
+            if(pA !=NULL )
+                atoms.emplace_back(pA);
+        }else {
+            Interaction *pA = Interaction::create(atoms, words);
+            if(pA != NULL)
+                interactions.emplace_back(pA);
         }
-        else {
-	    Interaction *pA = Interaction::create(atoms, words);
-	    if(pA != NULL)
-		interactions.emplace_back(pA);
-	}
     }
     INF.close();    
 };

@@ -40,13 +40,13 @@ void LJ::getForce(){
     MyVector r = (*objB).site - (*objA).site;
     double dd = r.mmodule();
     if(dd < cutoff){
-	double d4  = dd * dd;
-	double d8  = d4 * d4;
-	double d14 = d8 * d4 * dd;
-	double pf = param12/d14 - param6/d8;
-	MyVector f = r * pf;
-	(*objA).force += f;
-	(*objB).force -= f;
+        double d4  = dd * dd;
+        double d8  = d4 * d4;
+        double d14 = d8 * d4 * dd;
+        double pf = param12/d14 - param6/d8;
+        MyVector f = r * pf;
+        (*objA).force += f;
+        (*objB).force -= f;
     }
 };
 
@@ -72,12 +72,12 @@ void Repulse::getForce(){
     MyVector r = (*objB).site - (*objA).site;
     double dd = r.mmodule();
     if(dd < cutoff){
-	double d4  = dd * dd;
-	double d14 = d4 * d4 * d4 * dd;
-	double pf = param / d14;
-	MyVector f = r * pf;
-	(*objA).force += f;
-	(*objB).force -= f;
+        double d4  = dd * dd;
+        double d14 = d4 * d4 * d4 * dd;
+        double pf = param / d14;
+        MyVector f = r * pf;
+        (*objA).force += f;
+        (*objB).force -= f;
     }
 };
 
