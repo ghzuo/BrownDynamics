@@ -7,3 +7,5 @@ A C++ teaching package for physical students
 3. cd build
 4. cmake ..
 5. make
+
+the bindary files will find in "bin" 
