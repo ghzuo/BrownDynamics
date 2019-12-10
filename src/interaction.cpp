@@ -45,8 +45,8 @@ void LJ::getForce(){
         double d14 = d8 * d4 * dd;
         double pf = param12/d14 - param6/d8;
         MyVector f = r * pf;
-        (*objA).force += f;
-        (*objB).force -= f;
+        (*objA).force -= f;
+        (*objB).force += f;
     }
 };
 
@@ -76,8 +76,8 @@ void Repulse::getForce(){
         double d14 = d4 * d4 * d4 * dd;
         double pf = param / d14;
         MyVector f = r * pf;
-        (*objA).force += f;
-        (*objB).force -= f;
+        (*objA).force -= f;
+        (*objB).force += f;
     }
 };
 

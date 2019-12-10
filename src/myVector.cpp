@@ -2,7 +2,7 @@
 
 // the static variation of the class
 bool MyVector::_bDim = true;
-int MyVector::_nDim = 2;
+int MyVector::_nDim = 3;
 
 // the gaussian driver
 unsigned seed = chrono::system_clock::now().time_since_epoch().count();
